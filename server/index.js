@@ -6,6 +6,8 @@ const app = express();
 const port = 3000;
 const cv = require('./cv.js');
 const spotify = require('./spotify.js');
+var scale = require('scale-number-range');
+
 
 app.use(cors());
 app.use(morgan('dev'));
@@ -17,14 +19,20 @@ app.get('/redirect', (req, res) => {
 
 app.post('/image', (req, res) => {
   let img = req.body.img;
-  cv.computerVision((color) => {
+  cv.computerVision((colorData) => {
+    const {color, accent} = colorData;
+    const tempo = Math.floor(scale(accent.l, 0, 1, 120, 50));
+    console.log('valence is: ', accent.s);
+    console.log('energy is ', accent.s)
+    console.log('tempo is: ', tempo)
     let note = Notes[color[0]];
+    console.log('note is: ' + color[0] + ' ' + Notes[color[0]]);
     spotify.getTracks((data) => {
       randTrack = Math.floor(Math.random() * data.length);
-      let track = data[randTrack].external_urls.spotify;
+      let track = data[randTrack].uri;
       let body = {color, track};
       res.status(200).send(body);
-    }, note)
+    }, note, tempo, accent.s, accent.s)
   }, img)
 })
 

@@ -1,15 +1,19 @@
 import React, {useState, useEffect} from 'react';
 import {storage} from "../firebase/firebase";
 import axios from 'axios';
+import Player from './Player';
 
 function App() {
   const [imageAsFile, setImageAsFile] = useState('');
   const [imageAsUrl, setImageAsUrl] = useState('');
+  const [track, setTrack] = useState('');
   useEffect(() => {
     if (imageAsUrl.length) {
       axios.post('/image', {
         img: imageAsUrl
-      }).then((res) => console.log(res));
+      }).then(({data}) => {
+        setTrack(data.track);
+      });
     }
   }, [imageAsUrl]);
 
@@ -37,7 +41,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div>
     <form onSubmit={handleFireBaseUpload}>
         <input
           type="file"
@@ -46,6 +50,7 @@ function App() {
         <button>upload to firebase</button>
       </form>
       <img src={imageAsUrl} alt="image tag" />
+      {track.length && <Player track={track} />}
     </div>
   );
 }
