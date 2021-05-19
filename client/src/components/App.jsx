@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
+import { Button, Form, Spinner } from 'react-bootstrap';
 import {storage} from "../firebase/firebase";
+import { FileDrop } from 'react-file-drop';
 import axios from 'axios';
 import Player from './Player';
 
@@ -17,10 +19,6 @@ function App() {
     }
   }, [imageAsUrl]);
 
-  const handleImageAsFile = (e) => {
-    const image = e.target.files[0]
-    setImageAsFile(imageFile => (image))
-  }
   const handleFireBaseUpload = (e) => {
     e.preventDefault();
     if(imageAsFile === '' ) {
@@ -44,20 +42,29 @@ function App() {
       setTrack(data);
     })
   }
+  const styles = { border: '2px solid black', width: 500, color: 'black', padding: 20 };
+  console.log(Spinner);
   return (
     <div>
-    <form onSubmit={handleFireBaseUpload}>
-        <input
-          type="file"
-          onChange={handleImageAsFile}
-        />
-        <button>upload to firebase</button>
-      </form>
-      <button onClick={handleShuffle}>Shuffle</button>
-      <img src={imageAsUrl} alt="image tag" />
-      {track.length && <Player track={track} />}
+      <div className='page-one'>
+        <div style={styles}>
+          <FileDrop
+            onDrop={(files, event) => setImageAsFile(files[0])}
+          >
+            {!imageAsFile ? 'Drag image here!' : 'Ready to analyze!'}
+          </FileDrop>
+        </div>
+        <Form onSubmit={handleFireBaseUpload}>
+        <Button variant="outline-primary" type="submit">Analyze</Button>
+        </Form>
+        </div>
+        <Spinner animation="border" role="status">
+          <span className="sr-only">Loading...</span>
+        </Spinner>
+      {track.length ? <button onClick={handleShuffle}>Shuffle</button> : <> </>}
+      {imageAsUrl.length ? <img src={imageAsUrl} alt="art"/> : <> </>}
+      {track.length ? <Player track={track} /> : <> </>}
     </div>
   );
 }
-
 export default App;
