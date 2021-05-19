@@ -11,7 +11,7 @@ function App() {
     if (imageAsUrl.length) {
       axios.post('/image', {
         img: imageAsUrl
-      }).then(({data}) => {
+      }).then(({ data }) => {
         setTrack(data.track);
       });
     }
@@ -39,7 +39,11 @@ function App() {
        })
     })
   }
-
+  const handleShuffle = () => {
+    axios.get('/shuffle').then(({ data }) => {
+      setTrack(data);
+    })
+  }
   return (
     <div>
     <form onSubmit={handleFireBaseUpload}>
@@ -49,6 +53,7 @@ function App() {
         />
         <button>upload to firebase</button>
       </form>
+      <button onClick={handleShuffle}>Shuffle</button>
       <img src={imageAsUrl} alt="image tag" />
       {track.length && <Player track={track} />}
     </div>

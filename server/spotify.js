@@ -1,7 +1,6 @@
 const SpotifyWebApi = require('spotify-web-api-node');
 const config = require('../config/config.js');
 
-// credentials are optional
 const spotifyApi = new SpotifyWebApi({
   clientId: config.clientId,
   clientSecret: config.clientSecret,
@@ -25,23 +24,15 @@ module.exports.getTracks = (callback, key, tempo, energy, valence) => {
 
 const getRecs = (callback, key, tempo, energy, valence) => {
   spotifyApi.getRecommendations({
-    //testing low energy
     target_energy: energy,
-    seed_genres: ['ambient', 'jazz', 'classical'],
+    seed_genres: ['ambient', 'classical'],
     target_key: key,
     min_key: key,
     max_key: key,
-    //testing slow tempo
-    target_tempo: 50,
-    max_tempo: 70,
+    target_tempo: tempo,
     target_valence: valence,
-    //testing minor
-    target_mode: 0,
-    max_mode: 0,
-    target_danceability: 0,
-    target_loudness: 0.2
-
-
+    target_danceability: valence,
+    target_loudness: energy
   })
     .then((data) => {
       let recommendations = data.body;
