@@ -15,7 +15,7 @@ export default function Details() {
           <AccordionItem>
               <AccordionItemHeading>
                   <AccordionItemButton>
-                      Who is Scriabin?
+                      <strong>Who is Scriabin?</strong>
                   </AccordionItemButton>
               </AccordionItemHeading>
               <AccordionItemPanel>
@@ -27,7 +27,7 @@ export default function Details() {
           <AccordionItem>
               <AccordionItemHeading>
                   <AccordionItemButton>
-                      How does this work?
+                      <strong>How does this work?</strong>
                   </AccordionItemButton>
               </AccordionItemHeading>
               <AccordionItemPanel>
