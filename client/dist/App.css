@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
+
 body {
   background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
+  font-family: 'Lora', serif;
 }
 .header {
   padding: 50px;
