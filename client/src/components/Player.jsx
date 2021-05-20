@@ -3,10 +3,10 @@ import SpotifyPlayer from 'react-spotify-player';
 
 const Player = ({ track }) => {
   const size = {
-    width: '100%',
+    width: '65%',
     height: 300,
   };
-  const view = 'list'; // or 'coverart'
+  const view = 'coverart'; // or 'coverart'
   const theme = 'black'; // or 'white'
   return (
     <div className="player">

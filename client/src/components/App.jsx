@@ -3,12 +3,14 @@ import { Button, Form, Spinner } from 'react-bootstrap';
 import {storage} from "../firebase/firebase";
 import { FileDrop } from 'react-file-drop';
 import axios from 'axios';
-import Player from './Player';
+import Drag from './Drag';
+import Result from './Result';
 
 function App() {
   const [imageAsFile, setImageAsFile] = useState('');
   const [imageAsUrl, setImageAsUrl] = useState('');
   const [track, setTrack] = useState('');
+  const [clicked, setClicked] = useState(false);
   useEffect(() => {
     if (imageAsUrl.length) {
       axios.post('/image', {
@@ -21,6 +23,7 @@ function App() {
 
   const handleFireBaseUpload = (e) => {
     e.preventDefault();
+    setClicked(true);
     if(imageAsFile === '' ) {
       console.error(`not an image, the image file is a ${typeof(imageAsFile)}`)
     }
@@ -34,6 +37,7 @@ function App() {
       storage.ref('images').child(imageAsFile.name).getDownloadURL()
        .then(fireBaseUrl => {
          setImageAsUrl(fireBaseUrl);
+         setClicked(false);
        })
     })
   }
@@ -42,28 +46,24 @@ function App() {
       setTrack(data);
     })
   }
-  const styles = { border: '2px solid black', width: 500, color: 'black', padding: 20 };
-  console.log(Spinner);
+
+  const reset = () => {
+    setImageAsFile('');
+    setImageAsUrl('');
+    setTrack('');
+  }
   return (
-    <div>
-      <div className='page-one'>
-        <div style={styles}>
-          <FileDrop
-            onDrop={(files, event) => setImageAsFile(files[0])}
-          >
-            {!imageAsFile ? 'Drag image here!' : 'Ready to analyze!'}
-          </FileDrop>
-        </div>
-        <Form onSubmit={handleFireBaseUpload}>
-        <Button variant="outline-primary" type="submit">Analyze</Button>
-        </Form>
-        </div>
-        <Spinner animation="border" role="status">
-          <span className="sr-only">Loading...</span>
-        </Spinner>
-      {track.length ? <button onClick={handleShuffle}>Shuffle</button> : <> </>}
-      {imageAsUrl.length ? <img src={imageAsUrl} alt="art"/> : <> </>}
-      {track.length ? <Player track={track} /> : <> </>}
+    <div className="bg-color">
+      <div className="header">
+        <h1 className="title">Scriabin</h1>
+        <h3 class="italic">listen to your favorite paintings</h3>
+      </div>
+      <div className="body">
+        {!imageAsUrl && <Drag imageAsFile={imageAsFile} setImageAsFile={setImageAsFile}
+        handleFireBaseUpload={handleFireBaseUpload} clicked={clicked}/>}
+        {imageAsUrl && <Result track={track} imageAsUrl={imageAsUrl}
+        handleShuffle={handleShuffle} reset={reset}/>}
+      </div>
     </div>
   );
 }
