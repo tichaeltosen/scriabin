@@ -53,12 +53,12 @@ function App() {
     setTrack('');
   }
   return (
-    <div className="bg-color">
+    <div>
       <div className="header">
         <h1 className="title">Scriabin</h1>
         <h3 class="italic">listen to your favorite paintings</h3>
       </div>
-      <div className="body">
+      <div>
         {!imageAsUrl && <Drag imageAsFile={imageAsFile} setImageAsFile={setImageAsFile}
         handleFireBaseUpload={handleFireBaseUpload} clicked={clicked}/>}
         {imageAsUrl && <Result track={track} imageAsUrl={imageAsUrl}

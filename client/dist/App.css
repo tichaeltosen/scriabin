@@ -23,10 +23,21 @@ h3.italic {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.drop-component {
+  margin-bottom: 20px;
+}
 .drag-file {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.metric {
+  width: 100px;
+  height: 100px;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
 }
 
 .art-container {
@@ -39,6 +50,12 @@ h3.italic {
   height: 100%;
   width: auto;
   object-fit: contain;
+}
+
+.details {
+  margin-top: 15vh;
+  margin-left: 20vw;
+  margin-right: 20vw;
 }
 
 .player-container {

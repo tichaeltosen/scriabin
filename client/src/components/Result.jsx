@@ -1,19 +1,22 @@
 import React from 'react';
 import { Button, Row, Col, Container } from 'react-bootstrap';
 import Player from './Player';
+import Chart from './Chart'
+
 
 const Result = ({ track, imageAsUrl, handleShuffle, reset }) => {
   return (
     <Container className="result-page">
     <Row>
-      <Col sm={6}>
+      <Col lg={9}>
         <Button variant="primary" onClick={reset} className="button">Reset</Button>
         <div className='art-container'>
           <img src={imageAsUrl} alt="art" className="art-image"/>
         </div>
       </Col>
-      <Col sm={6}>
-        <div>Image Data</div>
+      <Col lg={3}>
+        <h2>Metrics</h2>
+        <Chart />
       </Col>
     </Row>
     <Row >
