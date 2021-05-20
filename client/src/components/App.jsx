@@ -11,11 +11,22 @@ function App() {
   const [imageAsUrl, setImageAsUrl] = useState('');
   const [track, setTrack] = useState('');
   const [clicked, setClicked] = useState(false);
+  const [metrics, setMetrics] = useState({
+    color: '',
+    valence: 0,
+    energy: 0
+  })
+
   useEffect(() => {
     if (imageAsUrl.length) {
       axios.post('/image', {
         img: imageAsUrl
       }).then(({ data }) => {
+        setMetrics({
+          color: data.color[0],
+          valence: data.valence,
+          energy: data.energy
+        });
         setTrack(data.track);
       });
     }
@@ -62,7 +73,7 @@ function App() {
         {!imageAsUrl && <Drag imageAsFile={imageAsFile} setImageAsFile={setImageAsFile}
         handleFireBaseUpload={handleFireBaseUpload} clicked={clicked}/>}
         {imageAsUrl && <Result track={track} imageAsUrl={imageAsUrl}
-        handleShuffle={handleShuffle} reset={reset}/>}
+        handleShuffle={handleShuffle} reset={reset} metrics={metrics}/>}
       </div>
     </div>
   );

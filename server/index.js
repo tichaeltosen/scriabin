@@ -27,8 +27,8 @@ app.post('/image', (req, res) => {
   cv.computerVision((colorData) => {
     const {color, accent} = colorData;
     const tempo = Math.floor(scale(accent.s, 0, 1, 50, 130));
-    const energy = scale(accent.h, 0, 1, 1, 0);
-    const valence = accent.s;
+    const energy = scale(accent.h, 0, 1, 1, 0).toFixed(2);
+    const valence = accent.s.toFixed(2);
     console.log('valence is: ', valence);
     console.log('energy is ', energy)
     console.log('tempo is: ', tempo)
@@ -37,7 +37,7 @@ app.post('/image', (req, res) => {
     spotify.getTracks((data) => {
       currentTracks = data;
       let track = pickRandomTrack(data).uri;
-      let body = {color, track};
+      let body = {color, track, energy, valence};
       res.status(200).send(body);
     }, note, tempo, energy, valence)
   }, img)

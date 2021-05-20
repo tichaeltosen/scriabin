@@ -4,7 +4,7 @@ import Player from './Player';
 import Chart from './Chart'
 
 
-const Result = ({ track, imageAsUrl, handleShuffle, reset }) => {
+const Result = ({ track, imageAsUrl, handleShuffle, reset, metrics }) => {
   return (
     <Container className="result-page">
     <Row>
@@ -16,7 +16,7 @@ const Result = ({ track, imageAsUrl, handleShuffle, reset }) => {
       </Col>
       <Col lg={3}>
         <h2>Metrics</h2>
-        <Chart />
+        <Chart metrics={metrics}/>
       </Col>
     </Row>
     <Row >
