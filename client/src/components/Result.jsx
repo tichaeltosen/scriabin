@@ -1,7 +1,8 @@
 import React from 'react';
 import { Button, Row, Col, Container } from 'react-bootstrap';
 import Player from './Player';
-import Chart from './Chart'
+import Chart from './Chart';
+import BackButton from './BackButton';
 
 
 const Result = ({ track, imageAsUrl, handleShuffle, reset, metrics }) => {
@@ -9,7 +10,8 @@ const Result = ({ track, imageAsUrl, handleShuffle, reset, metrics }) => {
     <Container className="result-page">
     <Row>
       <Col lg={9}>
-        <Button variant="primary" onClick={reset} className="button">Reset</Button>
+        {/* <Button variant="primary" onClick={reset} className="button">Reset</Button> */}
+        <BackButton onClick={reset} />
         <div className='art-container'>
           <img src={imageAsUrl} alt="art" className="art-image"/>
         </div>

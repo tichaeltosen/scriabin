@@ -1,10 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import { Button, Form, Spinner } from 'react-bootstrap';
 import {storage} from "../firebase/firebase";
+import { motion } from 'framer-motion';
 import { FileDrop } from 'react-file-drop';
 import axios from 'axios';
 import Drag from './Drag';
 import Result from './Result';
+
 
 function App() {
   const [imageAsFile, setImageAsFile] = useState('');
@@ -66,8 +68,23 @@ function App() {
   return (
     <div>
       <div className="header">
-        <h1 className="title">Scriabin</h1>
-        <h3 class="italic">listen to your favorite paintings</h3>
+        {/* <h1 className="title">Scriabin</h1> */}
+        <motion.h1
+          className="title"
+          initial={{x: -1000}}
+          animate={{x: 20}}
+          transition={{ duration: 1.5, type: 'spring', bounce: .4 }}
+          >
+          Scriabin
+        </motion.h1>
+        <motion.h3
+          className="italic"
+          initial={{x: 1000}}
+          animate={{x: 20}}
+          transition={{ duration: 1.5, type: 'spring', bounce: .4 }}
+          >
+          listen to your favorite paintings
+        </motion.h3>
       </div>
       <div>
         {!imageAsUrl && <Drag imageAsFile={imageAsFile} setImageAsFile={setImageAsFile}

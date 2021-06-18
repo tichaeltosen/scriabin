@@ -11,7 +11,9 @@ const Drag = ({ imageAsFile, setImageAsFile, handleFireBaseUpload, clicked }) =>
             <FileDrop
               onDrop={(files, event) => setImageAsFile(files[0])}
             >
-              {!imageAsFile ? 'Drag image here!' : 'Ready to analyze!'}
+            <div className={!imageAsFile ? "drag-text" : "ready-text"}>
+                {!imageAsFile ? 'Drag image here!' : 'Ready to analyze!'}
+            </div>
             </FileDrop>
           </div>
           <Form onSubmit={handleFireBaseUpload}>
