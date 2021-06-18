@@ -1,9 +1,11 @@
 import React from 'react';
 import { Button, Form, Spinner } from 'react-bootstrap';
+import { Wave } from 'react-animated-text';
 import { FileDrop } from 'react-file-drop';
 import Details from './Details';
 const Drag = ({ imageAsFile, setImageAsFile, handleFireBaseUpload, clicked }) => {
   const styles = { border: '2px solid black', width: 500, color: 'black', padding: 20 };
+  const text = imageAsFile ? 'Ready to analyze!' : 'Drag image here!';
   return (
     <div>
         <div className='drag-file'>
@@ -12,7 +14,13 @@ const Drag = ({ imageAsFile, setImageAsFile, handleFireBaseUpload, clicked }) =>
               onDrop={(files, event) => setImageAsFile(files[0])}
             >
             <div className={!imageAsFile ? "drag-text" : "ready-text"}>
-                {!imageAsFile ? 'Drag image here!' : 'Ready to analyze!'}
+                {<Wave
+                  speed={8}
+                  text={text}
+                  effect="pop"
+                  effectChange={1.1}
+                  paused={!imageAsFile}
+                />}
             </div>
             </FileDrop>
           </div>

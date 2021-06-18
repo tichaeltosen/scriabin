@@ -1,7 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
 
 body {
-  background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
+  /* background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%); */
+  background:
+  radial-gradient(
+   at center, #e3ffe7, #d9e7ff
+  );
   font-family: 'Lora', serif;
 }
 .header {
@@ -120,7 +124,7 @@ h3.italic {
 .file-drop > .file-drop-target.file-drop-dragging-over-frame {
   /* overlay a black mask when dragging over the frame */
   border: none;
-  background-color: rgba(0, 0, 0, 0.65);
+  background: linear-gradient(90deg, #e3ffe7 0%, #8bb0f0 100%);
   box-shadow: none;
   z-index: 50;
   opacity: 1;
@@ -130,9 +134,8 @@ h3.italic {
 }
 
 .file-drop > .file-drop-target.file-drop-dragging-over-target {
-  /* turn stuff orange when we are dragging over the target */
-  color: #ff6e40;
-  box-shadow: 0 0 13px 3px #ff6e40;
+  color: rgb(86, 192, 245);
+  box-shadow: 0 0 5px 3px rgb(86, 192, 245);
 }
 
 .refresh {
@@ -155,12 +158,5 @@ h3.italic {
 }
 
 .ready-text{
-  /* font-style: italic;
-  font-size: 1.75rem; */
-  background: #FF0000;
-  background: -webkit-linear-gradient(to right, #FF0000 0%, #1838a0 25%, #05C1FF 50%, #2dc49e 75%, #FF0000 100%);
-  background: -moz-linear-gradient(to right, #FF0000 0%, #1838a0 25%, #05C1FF 50%, #2dc49e 75%, #FF0000 100%);
-  background: linear-gradient(to right, #FF0000 0%, #1838a0 25%, #05C1FF 50%, #2dc49e 75%, #FF0000 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: rgb(86, 192, 245);
 }

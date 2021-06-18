@@ -3,6 +3,7 @@ import { Button, Form, Spinner } from 'react-bootstrap';
 import {storage} from "../firebase/firebase";
 import { motion } from 'framer-motion';
 import { FileDrop } from 'react-file-drop';
+import $ from 'jquery';
 import axios from 'axios';
 import Drag from './Drag';
 import Result from './Result';
@@ -66,7 +67,12 @@ function App() {
     setTrack('');
   }
   return (
-    <div>
+    <div onMouseMove={(e) => {
+      const mouseX = Math.round(e.pageX / window.innerWidth * 100);
+      const mouseY = Math.round(e.pageY / window.innerHeight * 100);
+      console.log(mouseX, mouseY);
+      $('body').css('background', 'radial-gradient(at ' + mouseX + '% ' + mouseY + '%, #e3ffe7, #b9d1fc)');
+    }}>
       <div className="header">
         {/* <h1 className="title">Scriabin</h1> */}
         <motion.h1
