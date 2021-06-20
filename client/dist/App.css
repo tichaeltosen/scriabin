@@ -7,6 +7,7 @@ body {
    at center, #e3ffe7, #b9d1fc
   );
   font-family: 'Lora', serif;
+  background-repeat: no-repeat;
 }
 .header {
   padding: 50px;
