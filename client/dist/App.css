@@ -4,7 +4,7 @@ body {
   /* background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%); */
   background:
   radial-gradient(
-   at center, #e3ffe7, #d9e7ff
+   at center, #e3ffe7, #b9d1fc
   );
   font-family: 'Lora', serif;
 }
@@ -63,6 +63,7 @@ h3.italic {
   margin-top: 15vh;
   margin-left: 20vw;
   margin-right: 20vw;
+  height: 35vh;
 }
 
 .player-container {

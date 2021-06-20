@@ -7,9 +7,10 @@ import $ from 'jquery';
 import axios from 'axios';
 import Drag from './Drag';
 import Result from './Result';
-
+import Nav from './Nav';
 
 function App() {
+  const [count, setCount] = useState(0);
   const [imageAsFile, setImageAsFile] = useState('');
   const [imageAsUrl, setImageAsUrl] = useState('');
   const [track, setTrack] = useState('');
@@ -38,6 +39,7 @@ function App() {
   const handleFireBaseUpload = (e) => {
     e.preventDefault();
     setClicked(true);
+    setCount(count + 1);
     if(imageAsFile === '' ) {
       console.error(`not an image, the image file is a ${typeof(imageAsFile)}`)
     }
@@ -66,32 +68,15 @@ function App() {
     setImageAsUrl('');
     setTrack('');
   }
+
+  console.log(count);
   return (
     <div onMouseMove={(e) => {
       const mouseX = Math.round(e.pageX / window.innerWidth * 100);
       const mouseY = Math.round(e.pageY / window.innerHeight * 100);
-      console.log(mouseX, mouseY);
       $('body').css('background', 'radial-gradient(at ' + mouseX + '% ' + mouseY + '%, #e3ffe7, #b9d1fc)');
     }}>
-      <div className="header">
-        {/* <h1 className="title">Scriabin</h1> */}
-        <motion.h1
-          className="title"
-          initial={{x: -1000}}
-          animate={{x: 20}}
-          transition={{ duration: 1.5, type: 'spring', bounce: .4 }}
-          >
-          Scriabin
-        </motion.h1>
-        <motion.h3
-          className="italic"
-          initial={{x: 1000}}
-          animate={{x: 20}}
-          transition={{ duration: 1.5, type: 'spring', bounce: .4 }}
-          >
-          listen to your favorite paintings
-        </motion.h3>
-      </div>
+      <Nav count={count}/>
       <div>
         {!imageAsUrl && <Drag imageAsFile={imageAsFile} setImageAsFile={setImageAsFile}
         handleFireBaseUpload={handleFireBaseUpload} clicked={clicked}/>}

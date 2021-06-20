@@ -12,7 +12,6 @@ const arrow = {
 };
 
 const BackButton = ({ onClick }) => {
-  console.log('running');
   return (
     <motion.div
       className="refresh"

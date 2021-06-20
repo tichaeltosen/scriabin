@@ -20,7 +20,7 @@ export default function Details() {
               </AccordionItemHeading>
               <AccordionItemPanel>
                   <p>
-                      Alexander Scriabin was a late 19th / early 20th century Russian composer. Scriabin was influenced by synesthesia, and associated colours with various harmonic tones. His <a href="https://en.wikipedia.org/wiki/Clavier_%C3%A0_lumi%C3%A8res">synesthetic color to tone mappings</a> are used in this project to an image to a song.
+                      Alexander Scriabin was a late 19th / early 20th century Russian composer. Scriabin was influenced by synesthesia, and associated colors with various harmonic tones. His <a href="https://en.wikipedia.org/wiki/Clavier_%C3%A0_lumi%C3%A8res">synesthetic color to tone mappings</a> are used in this project to connect an image to a song.
                   </p>
               </AccordionItemPanel>
           </AccordionItem>
